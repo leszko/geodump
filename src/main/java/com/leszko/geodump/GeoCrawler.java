@@ -156,9 +156,10 @@ class GeoCrawler {
 
     private String extractMediaLink(String url) {
         try {
-            List<String> image = Jsoup.connect(url).get().select(".mapa a img").stream()
+            List<String> image = Jsoup.connect(url).get().select(".mapa img").stream()
                                       .map(img -> img.attr("src"))
                                       .filter(link -> link.startsWith("http://"))
+                                      .filter(link -> link.contains("gallery"))
                                       .collect(toList());
             if (image.size() == 1) {
                 return image.get(0);
@@ -175,7 +176,8 @@ class GeoCrawler {
                 doc.select(".commentLine div.inactive").stream())
                      .map(entry -> Comment.builder()
                                           .username(parseCommentUsername(entry))
-                                          .date(entry.selectFirst("span[style=color: #898989; font-size: 8pt;]").html())
+                                          .date(entry.selectFirst("span[style=color: #898989; font-size: 8pt;]").html()
+                                                     .substring(8))
                                           .text(entry.selectFirst("div[style=padding-left: 7px;]").html())
                                           .build())
                      .collect(toList());

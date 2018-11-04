@@ -12,7 +12,7 @@ public class Main {
         }
 
         String username = args[0];
-        String outputFile = "./GEOBLOG.md";
-        new GeoDumper(username, outputFile).dump();
+        String outputPath = "./";
+        new GeoDumper(username, outputPath).dump();
     }
 }
