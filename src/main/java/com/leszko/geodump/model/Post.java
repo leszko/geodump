@@ -3,11 +3,12 @@ package com.leszko.geodump.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Builder
-public class Post {
+public class Post implements Serializable {
     private final String name;
     private final String place;
     private final String date;
@@ -19,7 +20,7 @@ public class Post {
 
     @Data
     @Builder
-    public static class Comment {
+    public static class Comment implements Serializable{
         private final String username;
         private final String date;
         private final String text;

@@ -14,13 +14,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-class GeoCrawler {
+class GeoCrawler implements Serializable {
     private static final String TEMPLATE_URL = "http://%s.geoblog.pl/podroze";
     private final String username;
 
